@@ -1,0 +1,136 @@
+.created {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+
+  position: relative;
+  top: -30px;
+}
+
+.created input {
+  background-color: var(--gray-500);
+  width: 39.875rem;
+  height: 3.375rem;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  color: var(--white);
+}
+
+.created button {
+  width: 5.6rem;
+  height: 3.25rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .2rem;
+  
+  background-color: var(--blue-dark);
+  color: var(--white);
+
+  border-radius: 8px;
+  border: none;
+
+  cursor: pointer;
+}
+
+.created button:hover {
+  background-color: var(--blue);
+  transition: .4s;
+}
+
+.container_tasks {
+  margin: 2rem 22rem 0rem 22rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tasks_created, 
+.tasks_completed {
+  display: flex;
+  align-items: center;
+  gap: .5rem ;
+}
+
+.tasks_created > p:first-child {
+  color: var(--blue);
+  font-size: .875rem;
+  font-weight: bold;
+}
+
+.tasks_created > p:last-child {
+  background-color: var(--gray-400);
+  padding: .3rem;
+  border-radius: 50%;
+  width: 28px;
+  height: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--gray-200);
+}
+
+.tasks_completed > p:first-child {
+  color: var(--purple);
+  font-size: .875rem;
+  font-weight: bold;
+}
+
+.tasks_completed > p:last-child {
+  background-color: var(--gray-400);
+  padding: .3rem;
+  border-radius: 50%;
+  width: 28px;
+  height: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--gray-200);
+}
+
+.divider {
+  height: 2px;
+
+  margin: 2rem 22rem 0rem 22rem;
+
+  background-color: var(--gray-400);
+}
+
+.container_content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .3rem;
+  
+  margin-top: 4rem;
+}
+
+.content p {
+  font-weight: bold;
+}
+
+.content > p:last-child {
+  color: var(--gray-300);
+  font-weight: normal;
+}
