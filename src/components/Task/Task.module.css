@@ -36,8 +36,25 @@ input[type="checkbox"]:checked + .custom_checkbox {
   background-color: var(--blue); 
 }
 
-.container button {
+.container_buttons button {
   background-color: transparent;
   border: none;
   color: var(--white);
+  cursor: pointer;
+}
+
+.container_buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.container_edit {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+}
+
+.container_edit button {
+  cursor: pointer;
 }

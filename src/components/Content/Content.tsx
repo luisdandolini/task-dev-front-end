@@ -4,6 +4,7 @@ import { ClipboardText } from '@phosphor-icons/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Task } from '../Task/Task';
+import Swal from 'sweetalert2';
 
 interface Task {
   id: number;
@@ -14,7 +15,7 @@ export function Content(){
   const [taskName, setTaskName] = useState('');
   const [allTasks, setAllTasks] = useState<Task[]>([]);
 
-  const handleTaskName = (event: any) => {
+  const handleTaskName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTaskName(event.target.value);
   };
 
@@ -25,8 +26,8 @@ export function Content(){
   const createdTask = () => {
     axios.post('http://localhost:3000/tasks', {
       name: taskName
-    }).then(response => {
-      console.log(response.data);
+    }).then(() => {
+      getAllTasks();
     }).catch(error => {
       console.log(error);
     });
@@ -35,11 +36,56 @@ export function Content(){
   const getAllTasks = () => {
     axios.get('http://localhost:3000/tasks')
       .then(response => {
-        console.log(response.data);
         setAllTasks(response.data);
       })
       .catch(error => {
         console.log(error);
+      })
+  };
+
+  const editTask = (id: number, newName: string) => {
+    axios.put(`http://localhost:3000/tasks/${id}`, {
+      name: newName 
+    })
+      .then(() => {
+        setAllTasks(prevTasks => prevTasks.map(task => {
+          if (task.id === id) {
+            return { ...task, name: newName }; 
+          }
+          return task;
+        }));
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  };
+
+  const handleDeleteTask = (id: number) => {
+    Swal.fire({
+      title: "Tem certeza?",
+      text: "Uma vez excluída, você não poderá recuperar esta tarefa!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#1E6F9F",
+      cancelButtonColor: "#E25858",
+      confirmButtonText: "Sim, exclua!",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteTask(id);
+        Swal.fire("Excluído!", "Sua tarefa foi excluída.", "success");
+      }
+    });
+  };
+
+  const deleteTask = (id: number) => {
+    axios.delete(`http://localhost:3000/tasks/${id}`)
+      .then(() => {
+        console.log('Tarefa excluida:', id);
+        setAllTasks(prevTasks => prevTasks.filter(task => task.id !== id));
+      })
+      .catch(error => {
+        console.log(error)
       })
   };
 
@@ -61,7 +107,7 @@ export function Content(){
       <div className={styles.container_tasks}>
         <div className={styles.tasks_created}>
           <p>Tarefas criadas</p>
-          <p>0</p>
+          <p>{allTasks.length}</p>
         </div>
 
         <div className={styles.tasks_completed}>
@@ -84,7 +130,11 @@ export function Content(){
             <div>
               {allTasks.map(task => (
                 <div key={task.id}>
-                  <Task content={task.name} />
+                  <Task 
+                    content={task.name} 
+                    onDelete={() => handleDeleteTask(task.id)}
+                    onEditTask={(newContent) => editTask(task.id, newContent)} // Corrigido aqui
+                    />
                 </div>
               ))}
             </div>
