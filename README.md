@@ -1,30 +1,42 @@
-# React + TypeScript + Vite
+# :checkered_flag: React Tasks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Preview
 
-Currently, two official plugins are available:
+![preview](https://i.ibb.co/NnjFJpb/Captura-de-Tela-2024-03-24-a-s-22-15-24.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# :open_book: Sobre o projeto 
 
-## Expanding the ESLint configuration
+Projeto criado para o treinamento sobre estados e consumo de api's com React.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# :computer: Tecnologias utilizadas 
+## Front End
+- TSX
+- HTML
+- CSS
+- React
+- Axios
 
-- Configure the top-level `parserOptions` property like this:
+# :runner: Como executar o projeto
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+# Clonar o repositório:
+git clone https://github.com/luisdandolini/task-dev-front-end.git
+
+# Instalar as dependências
+npm install
+
+# Executar o projeto
+npm run dev
 ```
+# ❕ Observação
+## Para uma melhor experiência, executar o backend do projeto, na qual se encontra no seguinte repositório e com suas devidas instruções de como rodar o projeto: 
+```bash
+# Clonar o repositório:
+git clone https://github.com/luisdandolini/task-dev-backend.git
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+# Instalar as dependências
+npm install
+
+# Executar o projeto
+npm run dev
+```
