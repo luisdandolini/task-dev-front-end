@@ -58,3 +58,8 @@ input[type="checkbox"]:checked + .custom_checkbox {
 .container_edit button {
   cursor: pointer;
 }
+
+.completed {
+  text-decoration: line-through;
+  color: var(--gray-400);
+}

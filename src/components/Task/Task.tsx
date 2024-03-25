@@ -66,7 +66,10 @@ export function Task({ content, onDelete, onEditTask, taskId, onTaskCompletion }
           </button>
         </div>
       ) : (
-        <p onClick={() => setIsEditing(true)}>
+        <p 
+          onClick={() => setIsEditing(true)}
+          className={completed ? styles.completed : ''}
+        >
           {content}
         </p>
       )}
