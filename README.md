@@ -6,7 +6,7 @@
 
 # :open_book: Sobre o projeto 
 
-Projeto criado para o treinamento sobre estados e consumo de api's com React.
+Projeto criado para o treinamento sobre estados e consumo de api's com React, com as funcionalidades de um CRUD. 
 
 # :computer: Tecnologias utilizadas 
 ## Front End
