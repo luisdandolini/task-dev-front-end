@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 interface Task {
   id: number;
   name: string;
+  completed: boolean
 }
 
 export function Content(){
@@ -25,9 +26,11 @@ export function Content(){
 
   const createdTask = () => {
     axios.post('http://localhost:3000/tasks', {
-      name: taskName
+      name: taskName,
+      completed: false
     }).then(() => {
       getAllTasks();
+      setTaskName('');
     }).catch(error => {
       console.log(error);
     });
@@ -37,6 +40,7 @@ export function Content(){
     axios.get('http://localhost:3000/tasks')
       .then(response => {
         setAllTasks(response.data);
+        console.log(response)
       })
       .catch(error => {
         console.log(error);
@@ -89,6 +93,17 @@ export function Content(){
       })
   };
 
+  const handleTaskCompletion = (id: number) => {
+    const updatedTasks = allTasks.map(task => {
+      if (task.id === id) {
+        return { ...task, completed: true };
+      }
+      return task;
+    });
+
+    setAllTasks(updatedTasks);
+  };
+
   return(
     <main>
       <div className={styles.created}>
@@ -112,7 +127,7 @@ export function Content(){
 
         <div className={styles.tasks_completed}>
           <p>Concluídas</p>
-          <p>0</p>
+          <p>{allTasks.filter(task => task.completed).length}</p>
         </div>
       </div>
 
@@ -133,8 +148,10 @@ export function Content(){
                   <Task 
                     content={task.name} 
                     onDelete={() => handleDeleteTask(task.id)}
-                    onEditTask={(newContent) => editTask(task.id, newContent)} // Corrigido aqui
-                    />
+                    onEditTask={(newContent) => editTask(task.id, newContent)}
+                    taskId={task.id}
+                    onTaskCompletion={() => handleTaskCompletion(task.id)} 
+                  />
                 </div>
               ))}
             </div>

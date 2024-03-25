@@ -1,16 +1,20 @@
 import styles from './Task.module.css';
 import { Trash, Pencil, Check, X } from "@phosphor-icons/react"
+import axios from 'axios';
 import { useState } from 'react';
 
 interface Props {
   content: string;
   onDelete: () => void;
   onEditTask: (newContent: string) => void;
+  taskId: number;
+  onTaskCompletion: () => void;
 }
 
-export function Task({ content, onDelete, onEditTask }: Props) {
+export function Task({ content, onDelete, onEditTask, taskId, onTaskCompletion }: Props) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(content);
+  const [completed, setCompleted] = useState(false);
 
   const handleEditConfirm = () => {
     setIsEditing(false);
@@ -22,11 +26,26 @@ export function Task({ content, onDelete, onEditTask }: Props) {
     setEditedContent(content);
   };
 
+  const handleCheckboxChange = () => {
+    setCompleted(true);
+    axios.put(`http://localhost:3000/tasks/${taskId}`, {
+      name: editedContent,
+      completed: true
+    }).then(() => {
+      console.log('Tarefa marcada como concluída:', taskId);
+      onTaskCompletion();
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+
   return(
     <div className={styles.container}>
       <input 
         type="checkbox" 
         className={styles.checkbox}
+        checked={completed}
+        onChange={handleCheckboxChange} 
       />
       <label className={styles.custom_checkbox}></label>
 
