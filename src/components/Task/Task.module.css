@@ -1,0 +1,43 @@
+.container {
+  margin: 1rem 20rem 0rem 20rem;
+
+  background-color: var(--gray-500);
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--gray-400);
+
+  min-width: 736px;
+  color: var(--white);
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.custom_checkbox {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--blue);
+  border-radius: 8px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked + .custom_checkbox {
+  background-color: var(--blue); 
+}
+
+.container button {
+  background-color: transparent;
+  border: none;
+  color: var(--white);
+}
